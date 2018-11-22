@@ -1,3 +1,5 @@
-require('@babel/register')
-// require the rest of the app that needs to be transpiled after the hook
-require('./src/main')
+import Qubit from './src/qubit'
+import Gate from './src/gate'
+import BasicGate from './src/basicGate'
+
+export { Qubit, Gate, BasicGate}

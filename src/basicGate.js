@@ -1,6 +1,5 @@
 import * as math from 'mathjs'
 
-import Qubit from './qubit'
 import Gate from './gate'
 
 // Pre-defined basic gate
@@ -23,4 +22,4 @@ const BasicGate = {
   ])
 }
 
-export { Qubit, Gate, BasicGate }
+export default BasicGate
