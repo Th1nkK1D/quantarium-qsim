@@ -1,0 +1,25 @@
+{
+  "name": "quantarium-qsim",
+  "version": "1.0.0",
+  "description": "Qubit simulation library for Quantarium, an interactive quantum computing exhibition",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Th1nkK1D/quantarium-qsim.git"
+  },
+  "author": "Th1nkK1D",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Th1nkK1D/quantarium-qsim/issues"
+  },
+  "homepage": "https://github.com/Th1nkK1D/quantarium-qsim#readme",
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/register": "^7.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "eslint": "^5.9.0"
+  }
+}
