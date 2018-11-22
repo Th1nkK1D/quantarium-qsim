@@ -21,5 +21,8 @@
     "@babel/register": "^7.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "eslint": "^5.9.0"
+  },
+  "dependencies": {
+    "mathjs": "^5.2.3"
   }
 }

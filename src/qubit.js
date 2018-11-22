@@ -1,7 +1,9 @@
+import * as math from 'mathjs'
+
 // Qubit class
 class Qubit {
   constructor() {
-    this.stateHistory = [[1,0]]
+    this.stateHistory = [[math.complex(1), math.complex(0)]]
     this.appliedGates = []
     this.collapsed = false
   }
@@ -11,8 +13,8 @@ class Qubit {
     const state = this.getCurrentState()
 
     return [
-      state[0]*op[0][0]+state[1]*op[0][1],
-      state[0]*op[1][0]+state[1]*op[1][1],
+      math.add(math.multiply(state[0],op[0][0]), math.multiply(state[1],op[0][1])),
+      math.add(math.multiply(state[0],op[1][0]), math.multiply(state[1],op[1][1]))
     ]
   }
 
@@ -26,10 +28,14 @@ class Qubit {
     return this.appliedGates.map(g => g.symbol)
   }
 
+  getStateHistoryAsString() {
+    return this.stateHistory.map(s => s.map(z => z.toString()))
+  }
+
   // Get overall qubit summary
   getQubitSummary() {
     return {
-      states: this.stateHistory,
+      states: this.getStateHistoryAsString(),
       gates: this.getAppliedGatesSymbol(),
       collapsed: this.collapsed
     }
@@ -66,8 +72,9 @@ class Qubit {
     if (this.collapsed) {
       return false
     }
+    const alpha = this.getCurrentState()[0]
+    const cutoff = math.multiply(alpha, math.conj(alpha))
 
-    const cutoff = Math.pow(this.getCurrentState()[0], 2)
     let res = [0,0]
     let batchRes
     
@@ -76,7 +83,9 @@ class Qubit {
       res[batchRes]++
     }
 
-    this.collapsed = batchRes === 0 ? [1,0] : [0,1]
+    this.collapsed = batchRes === 0
+      ? [[math.complex(1), math.complex(0)]]
+      : [[math.complex(0), math.complex(1)]]
 
     return { res, batch_size }
   }
