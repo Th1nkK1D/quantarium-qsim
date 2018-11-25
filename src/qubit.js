@@ -75,26 +75,26 @@ class Qubit {
   }
 
   // Measure qubit (standard basis projection measurement)
-  measure(batch_size) {
+  measure(batchSize) {
     if (this.collapsed) {
       return false
     }
     const alpha = this.getCurrentState()[0]
     const cutoff = math.multiply(alpha, math.conj(alpha))
 
-    let res = [0,0]
+    let result = [0,0]
     let batchRes
     
-    for(let b = 0; b < batch_size; b++) {
+    for(let b = 0; b < batchSize; b++) {
       batchRes = Math.random() < cutoff ? 0 : 1
-      res[batchRes]++
+      result[batchRes]++
     }
 
     this.collapsed = batchRes === 0
       ? [[math.complex(1), math.complex(0)]]
       : [[math.complex(0), math.complex(1)]]
 
-    return { res, batch_size }
+    return { result, batchSize }
   }
 
   // Unmeasure, reverse collapsation
