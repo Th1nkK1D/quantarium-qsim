@@ -2,9 +2,9 @@
   "name": "quantarium-qsim",
   "version": "1.0.0",
   "description": "Qubit simulation library for Quantarium, an interactive quantum computing exhibition",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
