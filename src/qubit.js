@@ -11,6 +11,10 @@ class Qubit {
     this.stateHistory = [[math.complex(1), math.complex(0)]]
     this.appliedGates = []
     this.collapsed = false
+    this.measurement = {
+      batchSize: 0,
+      result: [0, 0]
+    }
 
     return this.getQubitSummary()
   }
@@ -34,7 +38,8 @@ class Qubit {
     return {
       states: this.getStateHistoryAsString(),
       gates: this.getAppliedGatesSymbol(),
-      collapsed: this.collapsed
+      collapsed: this.collapsed,
+      measurement: this.measurement
     }
   }
 
@@ -82,25 +87,31 @@ class Qubit {
     const alpha = this.getCurrentState()[0]
     const cutoff = math.multiply(alpha, math.conj(alpha))
 
-    let result = [0,0]
+    this.measurement.batchSize = batchSize
+
     let batchRes
     
     for(let b = 0; b < batchSize; b++) {
       batchRes = Math.random() < cutoff ? 0 : 1
-      result[batchRes]++
+      this.measurement.result[batchRes]++
     }
 
     this.collapsed = batchRes === 0
       ? [[math.complex(1), math.complex(0)]]
       : [[math.complex(0), math.complex(1)]]
 
-    return { result, batchSize }
+    return this.measurement
   }
 
   // Unmeasure, reverse collapsation
   unmeasure() {
     if(!this.collapsed) {
       return false
+    }
+
+    this.measurement = {
+      batchSize: 0,
+      result: [0, 0]
     }
 
     this.collapsed = false
