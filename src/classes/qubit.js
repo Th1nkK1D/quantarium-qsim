@@ -42,7 +42,7 @@ class Qubit {
       gates: this.getAppliedGatesSymbol(),
       collapsed: this.collapsed,
       measurement: this.measurement,
-      currentCoord: normalizeState(this.stateHistory[this.stateHistory.length-1])
+      // currentCoord: normalizeState(this.stateHistory[this.stateHistory.length-1]).sphericalCoord
     }
   }
 

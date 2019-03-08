@@ -1,6 +1,7 @@
 import * as math from 'mathjs'
 
 function normalizeState (state) {
+  console.log('NORMALIZING')
   const z1 = math.complex(state[0])
   const z2 = math.complex(state[1])
 
