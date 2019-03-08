@@ -1,6 +1,6 @@
 import * as math from 'mathjs'
 
-import Gate from './gate'
+import Gate from './classes/gate'
 
 // Pre-defined basic gate
 const BasicGate = {

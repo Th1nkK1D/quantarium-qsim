@@ -1,5 +1,7 @@
 import * as math from 'mathjs'
 
+import normalizeState from '../helpers/normalizer'
+
 // Qubit class
 class Qubit {
   constructor() {
@@ -39,7 +41,8 @@ class Qubit {
       states: this.getStateHistoryAsString(),
       gates: this.getAppliedGatesSymbol(),
       collapsed: this.collapsed,
-      measurement: this.measurement
+      measurement: this.measurement,
+      currentCoord: normalizeState(this.stateHistory[this.stateHistory.length-1])
     }
   }
 
