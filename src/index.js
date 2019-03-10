@@ -1,6 +1,6 @@
 import Qubit from './classes/qubit'
 import Gate from './classes/gate'
 import BasicGate from './basicGate'
-import normalizeState from './helpers/normalizer'
+import { getSphericalCoordinate, checkSameState } from './helpers/sphericalCoordinate'
 
-export { Qubit, Gate, BasicGate, normalizeState }
+export { Qubit, Gate, BasicGate, getSphericalCoordinate, checkSameState }
