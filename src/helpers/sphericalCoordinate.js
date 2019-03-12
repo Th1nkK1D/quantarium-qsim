@@ -1,6 +1,12 @@
 import * as math from 'mathjs'
 
 function getSphericalCoordinate (state) {
+  if (state[0] == 0) {
+    return [math.pi, 0]
+  } else if (state[1] == 0) {
+    return [0, 0]
+  }
+
   const z1 = math.complex(state[0])
   const z2 = math.complex(state[1])
 
@@ -13,9 +19,12 @@ function getSphericalCoordinate (state) {
   const theta = 2*math.acos(a)
   const phi = (beta - alpha)
 
+  // console.log(`alpha => (${z1.im}/${z1.re}) = ${alpha}`)
+  // console.log(`beta => (${z2.im}/${z2.re}) = ${beta}`)
+
   return [
-    theta < 0 ? (2*math.pi) + theta : theta,
-    phi < 0 ? (2*math.pi) + phi : phi
+    theta, //theta < 0 ? (2*math.pi) + theta : theta,
+    phi //phi < 0 ? (2*math.pi) + phi : phi
   ]
 }
 
